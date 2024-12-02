@@ -1,7 +1,7 @@
 import { useGloblContext } from "../../context/context";
 
 const Stories = () => {
-  const {hits, isLoading, removeStory } = useGloblContext;
+  const { hits, isLoading, removeStory } = useGloblContext();
   if (isLoading) {
     return <div className="loading"></div>;
   }
@@ -13,11 +13,21 @@ const Stories = () => {
         return (
           <article className="story" key={objectID}>
             <h4 className="title">{title}</h4>
-            <p className="info">{points}points by <span>{author} |</span>  {num_comments}{' '}</p>
-           <div>
-           <a href={url} className="read-link" target="blank">daugiau...</a>
-           <button onClick={()=>{removeStory(objectID)}}>istrinti</button>
-           </div>
+            <p className="info">
+              {points}points by <span>{author} |</span> {num_comments}{" "}
+            </p>
+            <div>
+              <a href={url} className="read-link" target="blank">
+                daugiau...
+              </a>
+              <button
+                onClick={() => {
+                  removeStory(objectID);
+                }}
+              >
+                istrinti
+              </button>
+            </div>
           </article>
         );
       })}
